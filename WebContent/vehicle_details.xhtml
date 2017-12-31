@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Full Vehicle Details </title>
+	<h:outputStylesheet library="css" name="mystyle.css"  />
+
+	<f:metadata>
+		<f:event listener="#{vehicleController.loadVehicles()}"
+			type="preRenderView" />
+		<f:event listener="#{manufacturerController.loadManufacturers()}"
+			type="preRenderView" />
+		<f:event listener="#{modelController.loadModels()}"
+			type="preRenderView" />
+	</f:metadata>
+</h:head>
+
+<h:body>
+	<h:form>
+		<h:dataTable value="#{vehicleController.vehicles}" var="p"
+			headerClass="table-header" rowClasses="table-odd-row,table-even-row">
+				<h:column>
+					<f:facet name="header">Full Vehicle Details</f:facet>
+					Registration: #{p.reg}
+					<br />
+					<br />
+					Manufacturer Code: #{p.manu_code}
+					<br />
+					<br />
+					Model Code: #{p.model_code}
+					<br />
+					<br />
+					Mileage: #{p.mileage}
+					<br />
+					<br />
+					Price: #{p.price}
+					<br />
+					<br />
+					Colour: #{p.colour}
+					<br />
+					<br />
+					Fuel: #{p.fuel}
+					<br />
+					<br />
+				</h:column>
+		</h:dataTable>
+		<h:dataTable value="#{manufacturerController.manufacturers}" var="p"
+			headerClass="table-header" rowClasses="table-odd-row,table-even-row">
+				<h:column>
+					Manufacturer Name: #{p.manu_name}
+					<br />
+					<br />
+					Manufacturer Details: #{p.manu_details}
+					<br />
+					<br />
+				</h:column>
+		</h:dataTable>
+		<h:dataTable value="#{modelController.models}" var="p"
+			headerClass="table-header" rowClasses="table-odd-row,table-even-row">
+				<h:column>
+					Model Name: #{p.model_name}
+					<br />
+					<br />
+					Model Description: #{p.model_desc}
+					<br />
+					<br />
+				</h:column>
+		</h:dataTable>
+	</h:form>
+	<h:link value="Home" outcome="index" />
+	<br />
+	<h:link value="Vehicles" outcome="list_vehicles" />
+</h:body>
+</html>

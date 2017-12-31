@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Manufacturer Table </title>
+	<h:outputStylesheet library="css" name="mystyle.css"  />
+
+	<f:metadata>
+		<f:event listener="#{manufacturerController.loadManufacturers()}"
+			type="preRenderView" />
+	</f:metadata>
+</h:head>
+
+<h:body>
+	<h:form>
+		<h:messages id="messages" showDetail="true" autoUpdate="true" closable="true" value="Error" actionListener="#{DAO.deleteManufacturer}" />
+		<h:commandButton value="Add Manufacturer" action="add_manufacturer" />
+		<br />
+		<br />
+		<h:dataTable value="#{manufacturerController.manufacturers}" var="p"
+			styleClass="customTable"
+			headerClass="customTableHeader"
+			rowClasses="customTableOddRow,customTableEvenRow">
+			<h:column>
+				<f:facet name="header">Manufacturer Code</f:facet>
+				<div class="customBorderDiv">
+				#{p.manu_code}
+				</div>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Manufacturer Name</f:facet>
+				<div class="customBorderDiv">
+				#{p.manu_name}
+				</div>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Manufacturer Details</f:facet>
+				<div class="customBorderDiv">
+				#{p.manu_details}
+				</div>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Action</f:facet>
+				<h:commandLink value="Delete" actionListener="#{manufacturerController.deleteManufacturer(p)}"
+				onclick="return confirm('Are you sure?')">
+				</h:commandLink>
+				<br />
+				<h:commandLink value="Update" action="update_manufacturer">
+				</h:commandLink>
+			</h:column>
+		</h:dataTable>
+		<h:link value="Home" outcome="index" />
+	</h:form>
+</h:body>
+</html>

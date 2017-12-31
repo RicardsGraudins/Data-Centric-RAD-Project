@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Manufacturer Table</title>
+
+	<f:metadata>
+		<f:event listener="#{manufacturerController.loadManufacturers()}"
+			type="preRenderView" />
+	</f:metadata>
+</h:head>
+
+<h:body>
+	<h:form>
+	<h:messages id="messages" showDetail="true" autoUpdate="true" closable="true" value="Error" actionListener="#{DAO.addManufacturer}" />
+	
+      Code: <h:inputText value="#{manufacturer.manu_code}" id="id"
+			p:placeholder="enter manufacturer code"
+			required="true" requiredMessage="Code is mandatory" />
+			<h:message for="id"/> 
+		<br />
+		<br />
+      Name: <h:inputText value="#{manufacturer.manu_name}" id="mname"
+			p:placeholder="enter manufacturer name"
+			required="true" requiredMessage="Name is mandatory" />
+			<h:message for="mname"/>
+		<br />
+		<br />
+      Details: <h:inputText value="#{manufacturer.manu_details}" id="mdetails"
+			p:placeholder="enter manufacturer details" />
+		<br />
+		<br />
+		<h:commandButton value="Add"
+			action="#{manufacturerController.addManufacturer(manufacturer)}" />
+	</h:form>
+	<br />
+	<h:link value="Home" outcome="index" />
+	<br />
+	<h:link value="Manufacturers" outcome="list_manufacturers" />
+</h:body>
+</html>
